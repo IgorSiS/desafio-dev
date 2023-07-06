@@ -1,0 +1,29 @@
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    group: desafio-dev
+    name: desafio-dev-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: "jdbc:mysql://localhost:3306/desafio_dev?createDatabaseIfNotExist=true"
+    username: user_app
+    password: 123456
+  jpa:
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        default_batch_fetch_size: 20
+        batch_fetch_style: dynamic
+    database-platform: org.hibernate.dialect.MySQL57Dialect
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 800MB
+      max-request-size: 800MB
+server:
+  port: 8080
