@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,9 +42,14 @@ public class ExtractTransactionUseCase {
     //Estou querendo garantir a atomicidade dos dados em caso de falha.
     //Se eu quisesse optar pelo paralelismo perderia um pouco da atomocidade aqui nesse caso.
     @Transactional
-    public List<TransactionFinance> execute(InputStream inputStream) throws UseCaseException {
+    public List<TransactionFinance> execute(MultipartFile file) throws UseCaseException {
+
+        if (file.isEmpty()) {
+            throw new UseCaseException("Arquivo vazio!");
+        }
+
         List<TransactionFinance> transactionFinances = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             String line;
             int lineNumber = 0;
             while ((line = reader.readLine()) != null) {

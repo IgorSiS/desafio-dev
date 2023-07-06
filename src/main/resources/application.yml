@@ -13,7 +13,7 @@ spring:
     open-in-view: false
     show-sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: update # JPA Gerenciando, em produção geralmente é melhor gerenciar a nível de banco mesmo, com um flyway por exemplo...
     properties:
       hibernate:
         format_sql: false

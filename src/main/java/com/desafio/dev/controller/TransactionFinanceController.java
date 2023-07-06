@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -37,12 +36,7 @@ public class TransactionFinanceController {
     @ResponseStatus(value = HttpStatus.CREATED)
     @Operation(summary = "Exportar operações financeiras")
     public List<TransactionFinance> processTransactionFinance(@RequestParam("file") MultipartFile file) throws IOException, UseCaseException {
-        try (InputStream inputStream = file.getInputStream()) {
-            if (file.isEmpty()) {
-                throw new UseCaseException("Arquivo vazio!");
-            }
-            return extractTransactionUseCase.execute(inputStream);
-        }
+        return extractTransactionUseCase.execute(file);
     }
 
     @GetMapping
