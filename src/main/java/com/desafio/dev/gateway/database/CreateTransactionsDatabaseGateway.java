@@ -1,11 +1,11 @@
-package com.desafio.dev.database;
+package com.desafio.dev.gateway.database;
 
 import com.desafio.dev.domain.TransactionFinance;
-import com.desafio.dev.exception.GatewayException;
-import com.desafio.dev.CreateTransactionsGateway;
-import com.desafio.dev.database.model.TransacationFinanceEntity;
-import com.desafio.dev.repository.TransactionFinanceRepository;
+import com.desafio.dev.gateway.CreateTransactionsGateway;
+import com.desafio.dev.gateway.database.model.TransacationFinanceEntity;
+import com.desafio.dev.gateway.exception.GatewayException;
 import com.desafio.dev.mapper.TransactionMapper;
+import com.desafio.dev.repository.TransactionFinanceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,12 @@ public class CreateTransactionsDatabaseGateway implements CreateTransactionsGate
     private final TransactionMapper transactionMapper;
 
     @Override
-    public List<TransactionFinance> execute(List<TransactionFinance> transactionFinances) throws GatewayException {
+    public void execute(List<TransactionFinance> transactionFinances) throws GatewayException {
         try {
             List<TransacationFinanceEntity> transacationFinanceEntities = transactionMapper.toTransactionFinanceEntityList(transactionFinances);
-            List<TransacationFinanceEntity> savedEntities = transactionFinanceRepository.saveAll(transacationFinanceEntities);
-            return transactionMapper.toTransactionFinanceList(savedEntities);
+            this.transactionFinanceRepository.saveAll(transacationFinanceEntities);
         } catch (Exception ex) {
+            log.error("Problemas ao salvar transações", ex);
             throw new GatewayException("Problemas ao salvar transações", ex);
         }
     }

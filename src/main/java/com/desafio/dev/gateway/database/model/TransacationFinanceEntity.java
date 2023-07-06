@@ -1,4 +1,4 @@
-package com.desafio.dev.database.model;
+package com.desafio.dev.gateway.database.model;
 
 import com.desafio.dev.enums.TransactionType;
 import jakarta.persistence.*;

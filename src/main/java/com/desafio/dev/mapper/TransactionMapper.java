@@ -1,8 +1,8 @@
 package com.desafio.dev.mapper;
 
-import com.desafio.dev.controller.TransactionFinanceResponse;
+import com.desafio.dev.controller.response.TransactionFinanceResponse;
 import com.desafio.dev.domain.TransactionFinance;
-import com.desafio.dev.database.model.TransacationFinanceEntity;
+import com.desafio.dev.gateway.database.model.TransacationFinanceEntity;
 import org.mapstruct.Mapper;
 import org.springframework.data.domain.Page;
 

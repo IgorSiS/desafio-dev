@@ -1,7 +1,10 @@
-package com.desafio.dev.exception;
+package com.desafio.dev.gateway.exception;
+
+import java.io.Serial;
 
 public class GatewayException extends Exception{
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public GatewayException() {}

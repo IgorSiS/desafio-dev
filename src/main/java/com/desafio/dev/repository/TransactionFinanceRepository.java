@@ -1,6 +1,6 @@
 package com.desafio.dev.repository;
 
-import com.desafio.dev.database.model.TransacationFinanceEntity;
+import com.desafio.dev.gateway.database.model.TransacationFinanceEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
