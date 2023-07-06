@@ -1,10 +1,10 @@
-package com.desafio.dev.gateway.database;
+package com.desafio.dev.database;
 
+import com.desafio.dev.FindTransactionByNameGateway;
 import com.desafio.dev.domain.TransactionFinance;
-import com.desafio.dev.gateway.FindTransactionByNameGateway;
-import com.desafio.dev.gateway.database.model.TransacationFinanceEntity;
-import com.desafio.dev.gateway.exception.GatewayException;
-import com.desafio.dev.gateway.repository.TransactionFinanceRepository;
+import com.desafio.dev.exception.GatewayException;
+import com.desafio.dev.database.model.TransacationFinanceEntity;
+import com.desafio.dev.repository.TransactionFinanceRepository;
 import com.desafio.dev.mapper.TransactionMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class FindTransactionByNameDatabaseGateway implements FindTransactionByNa
             return transactionPage.map(transactionMapper::toTransactionFinance);
 
         }catch (Exception ex){
-            throw new GatewayException("Problemas ao consultar transações");
+            throw new GatewayException("Problemas ao consultar transações",ex);
         }
     }
 }

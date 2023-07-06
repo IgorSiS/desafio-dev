@@ -1,7 +1,7 @@
-package com.desafio.dev.gateway;
+package com.desafio.dev;
 
 import com.desafio.dev.domain.TransactionFinance;
-import com.desafio.dev.gateway.exception.GatewayException;
+import com.desafio.dev.exception.GatewayException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

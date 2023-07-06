@@ -1,4 +1,4 @@
-package com.desafio.dev.gateway.database.model;
+package com.desafio.dev.database.model;
 
 import com.desafio.dev.enums.TransactionType;
 import jakarta.persistence.*;
@@ -20,7 +20,7 @@ import java.time.LocalTime;
 @Table(name = "transaction_finance")
 public class TransacationFinanceEntity {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

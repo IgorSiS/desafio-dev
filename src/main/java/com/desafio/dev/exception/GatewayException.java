@@ -1,4 +1,4 @@
-package com.desafio.dev.gateway.exception;
+package com.desafio.dev.exception;
 
 public class GatewayException extends Exception{
 
