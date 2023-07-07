@@ -1,16 +1,16 @@
 package com.desafio.dev.gateway.database;
 
-import com.desafio.dev.gateway.FindTransactionByNameGateway;
 import com.desafio.dev.domain.TransactionFinance;
-import com.desafio.dev.gateway.exception.GatewayException;
+import com.desafio.dev.gateway.FindTransactionByNameGateway;
 import com.desafio.dev.gateway.database.model.TransacationFinanceEntity;
-import com.desafio.dev.repository.TransactionFinanceRepository;
+import com.desafio.dev.gateway.exception.GatewayException;
 import com.desafio.dev.mapper.TransactionMapper;
+import com.desafio.dev.repository.TransactionFinanceRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -21,16 +21,20 @@ public class FindTransactionByNameDatabaseGateway implements FindTransactionByNa
     private final TransactionMapper transactionMapper;
 
     @Override
-    public Page<TransactionFinance> execute(String name, Pageable pageable) throws GatewayException {
-        try{
-            Page<TransacationFinanceEntity> transactionPage =
-                    this.transactionFinanceRepository.findAllByStoreName(name, pageable);
+    public List<TransactionFinance> execute(String name) throws GatewayException {
+        try {
+            List<TransacationFinanceEntity> list;
 
-            return transactionPage.map(transactionMapper::toTransactionFinance);
+            if (name == null || name.isEmpty()) {
+                list = transactionFinanceRepository.findAll();
+            } else {
+                list = transactionFinanceRepository.findAllByStoreName(name);
+            }
+            return transactionMapper.toTransactionFinanceList(list);
 
-        }catch (Exception ex){
-            log.error("Problemas ao consultar transações",ex);
-            throw new GatewayException("Problemas ao consultar transações",ex);
+        } catch (Exception ex) {
+            log.error("Problemas ao consultar transações", ex);
+            throw new GatewayException("Problemas ao consultar transações", ex);
         }
     }
 }
