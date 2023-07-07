@@ -1,6 +1,6 @@
 -# DESAFIO
 
-### Tecnologias utilizadas
+### Tecnologias utilizadas backend
 - Java 17
 - Spring Boot 3.1.1
 - Docker
@@ -9,8 +9,11 @@
 - Lombok
 - MapStruct
 - Spring Test
+### Tecnologias utilizadas frontend
+- Não tenho muito conhecimento em front,mas sei um pouco de HTML, CSS, Java script puro.
 
 Sugestão de SDK: No intelij baixar o amazon correto-17. Amazon Correto version 17.0.5
+
 
 Executando a aplicação local
 
@@ -20,6 +23,9 @@ Executando a aplicação local
 - Execute a aplicação através do IntelliJ OU certifique-se de que o Maven esteja instalado no seu sistema caso não queira executar pelo intelij.
   Navegue até o diretório raiz do seu projeto onde está localizado o arquivo pom.xml e execute o comando: `mvn spring-boot:run`.
 - Com a aplicação de pé acesse: `http://localhost:8080/swagger-ui/index.html`. Poderá ver todas as funcionalidades.
+
+### FrontEned
+- Para usar o frontend, apenas abra o arquivo index.html que foi enviado junto ao projeto, no seu navegador
 
 ### Testando as funcionalides:
 - Fiz testes apenas das regras de negócio - CAMADA DE CASO DE USO.
@@ -36,7 +42,7 @@ curl --location 'http://localhost:8080/transaction/process/data' \
 
 Consultando transações - Vai retornar uma consulta paginada
 
-curl --location 'http://localhost:8080/transaction?storeName=BAR%20DO%20JO%C3%83O&page=0&size=15' \
+curl --location 'http://localhost:8080/transaction?storeName=BAR%20DO%20JO%C3%83O' \
 --header 'accept: */*'
 ---------------------------------------------------------------
 ```
